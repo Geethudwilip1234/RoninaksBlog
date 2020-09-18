@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.main{
+    margin-left: 5%;
+}
+
+.blogHeading{
+    text-align: center;
+    padding: 10px;
+}
+
+
+.images img{
+    width: 10%;
+    padding-bottom: 20px;
+   
+}
+.date{
+    padding-bottom: 30px;
+}
+.longDescription{
+   
+
+}
+h1{
+    font-size: 30px;
+   }
+p{
+    font-size: 25px;
+    padding-bottom: 10px;
+
+}
+p1{
+    font-size: 15px;
+    text-align: justify;
+    
+}
