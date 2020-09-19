@@ -1,68 +1,111 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
 
-
-.main{
-    margin-left: 10%;
-    margin-top: 5%;
-}
-
-.category{
-    width: 10%;
-    padding-bottom: 5px;
-    box-shadow: 2px 2px 20px black;
-    border-radius: 8px; 
-
-}
-
-.cards{
+/* 
+.cards {
     width: 25%;
     height: 50%;
-    /* background-color: gray; */
+    background-color: gray;
     display: inline-block;
     box-shadow: 2px 2px 20px black;
-     border-radius: 5px; 
-     margin: 2%;
-    
-     
+    border-radius: 5px;
+    margin: 2%;
+
+
+} */
+
+body {
+    font-family: 'Ubuntu';
 }
 
-.image img{
+button {
+    font-family: 'Ubuntu';
+    border: 1px solid lightgray;
+}
+
+button:hover {
+    background: #ffc5c5;
+}
+
+.image img {
     width: 100%;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-   
+
 }
 
-.title{
+.title {
     text-align: center;
     padding: 10px;
 }
 
-h1{
+h1 {
     font-size: 20px;
-   }
-p{
+}
+
+p {
     font-size: 15px;
 }
 
-.desc{
+.desc {
     padding: 8px;
     text-align: left;
-   
+
     padding-top: 10px;
-          border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-  }
-.AuthorName{
+}
+
+.AuthorName {
     padding: 8px;
     text-align: left;
 }
-.Date{
+
+.Date {
     text-align: right;
 
 }
 
+/* New CSS */
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+.header-container {
+    margin: 50px;
+    grid-template-columns: repeat(4, 25%);
+    display: grid;
+}
+
+.category {
+    box-shadow: 1px 1px 10px 1px #f2f2f2;
+    padding: 10px;
+    margin: 20px;
+}
+
+.desc {
+    text-align: justify;
+    text-overflow: ellipsis;
+}
+
+.container {
+    margin: 50px;
+    grid-template-columns: repeat(3, 33%);
+    display: grid;
+}
+
+.cards {
+    background: tomato;
+    margin: 10px;
+    padding: 10px;
+    /* box-shadow: 2px 2px 20px black;
+    border-radius: 5px; */
+}
