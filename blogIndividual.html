@@ -3,13 +3,18 @@
 
 <head>
     <title>BLOGS</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" type="text/css" href="blogIndividual.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" async></script>
 
 </head>
 
 <body>
-    <div class="main">
-        <div class="blogCategory">
+    <div class="container" id="posts">
+
+        <!-- <div class="blogCategory">
             <h1>Category</h1>
         </div>
 
@@ -47,7 +52,7 @@
                 exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
             </p1>
 
-        </div>
+        </div> -->
 
     </div>
 </body>
@@ -61,8 +66,42 @@
     }
 
     const loadPost = (PID) => {
+        $.ajax({
+			method: 'post',
+			dataType: 'JSON',
+            url: 'individualBlog.php',
+            data:({
+                "PID":PID
+
+            }),
+            success: (response) => {
+                console.log(success);
+                if (!response.status) return 0;
+
+				var blogTemplate = '';
+
+				response.data.forEach(element => {
+					blogTemplate = blogTemplate + renderCards(element);
+                    console.log(blogTemplate);
+
+				});
+
+				$('#posts').html(blogTemplate);
+            },
+            error: () => {
+				console.error();
+			}
+
+        })
 
     }
+
+    const renderCards = post => {
+		Template = 
+			' <div class="blogCategory"><h1>'+ post.categories +'</h1> </div> <div class="blogHeading"><h1>'+post.title+'</h1></div><div class="authorName"><p>Author Name : '+post.emp_name+'</p></div><div class="date"><p>'+post.published_at+'</p></div><div class="images"><img src="assets/images/roninaks-logo-black-1-192x192.png"></div><div class="longDescription"><p>Blog Content</p><p1> </p1>'+post.content+' </div>';
+
+		return Template;
+	}
 </script>
 
 </html>

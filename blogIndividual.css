@@ -5,8 +5,11 @@
 
 
 
-.main{
-    margin-left: 5%;
+.container{
+    margin: 25px;
+    grid-template-columns: auto;
+    background-color: white;
+    height: 300vh;
 }
 
 .blogHeading{
