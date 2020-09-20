@@ -14,45 +14,34 @@
 <body>
     <div class="container" id="posts">
 
-        <!-- <div class="blogCategory">
-            <h1>Category</h1>
+        <div class="blogCategory">
+            <h1 id="categories">Not available</h1>
         </div>
 
         <div class="blogHeading">
-            <h1>Blog Heading</h1>
+            <h1 id="heading">Not available</h1>
 
         </div>
 
         <div class="authorName">
-            <p>Author Name :</p>
+            <p id="author">Not available</p>
         </div>
 
         <div class="date">
-            <p>Date</p>
+            <p id="date">Not available</p>
         </div>
 
         <div class="images">
+            <!-- If this is dynamic content create a template otherwise use id to enter data into innerhtml -->
             <img src="assets/images/roninaks-logo-black-1-192x192.png">
             <img src="assets/images/roninaks-logo-black-1-192x192.png">
             <img src="assets/images/roninaks-logo-black-1-192x192.png">
         </div>
 
         <div class="longDescription">
-            <p>Blog Summary</p>
-            <p1>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-                Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-                undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-                Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor
-                sit amet..", comes from a line in section 1.10.32.
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their
-                exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-            </p1>
+            <p1 id="content">Not available</p1>
 
-        </div> -->
+        </div>
 
     </div>
 </body>
@@ -66,42 +55,44 @@
     }
 
     const loadPost = (PID) => {
+
+        console.log(PID)
         $.ajax({
-			method: 'post',
-			dataType: 'JSON',
+            method: 'post',
+            dataType: 'JSON',
             url: 'individualBlog.php',
-            data:({
-                "PID":PID
+            data: ({
+                "PID": PID
 
             }),
             success: (response) => {
-                console.log(success);
                 if (!response.status) return 0;
-
-				var blogTemplate = '';
-
-				response.data.forEach(element => {
-					blogTemplate = blogTemplate + renderCards(element);
-                    console.log(blogTemplate);
-
-				});
-
-				$('#posts').html(blogTemplate);
+                $('#categories').html(response.data.categories);
+                $('#heading').html(response.data.title);
+                $('#author').html(response.data.emp_name);
+                $('#date').html(response.data.published_at);
+                $('#content').html(response.data.content);
             },
             error: () => {
-				console.error();
-			}
+                console.error();
+            }
 
         })
 
     }
-
+/* Use template only when you have to render entire content which has to be repeated.
+In this context we dont have to repeat an html pattern,
+so we need only replace innerhtml with jquery find '#' */
     const renderCards = post => {
-		Template = 
-			' <div class="blogCategory"><h1>'+ post.categories +'</h1> </div> <div class="blogHeading"><h1>'+post.title+'</h1></div><div class="authorName"><p>Author Name : '+post.emp_name+'</p></div><div class="date"><p>'+post.published_at+'</p></div><div class="images"><img src="assets/images/roninaks-logo-black-1-192x192.png"></div><div class="longDescription"><p>Blog Content</p><p1> </p1>'+post.content+' </div>';
+        Template =
+            ' <div class="blogCategory"><h1>' + post.categories + '</h1> </div> <div class="blogHeading"><h1>' +
+            post.title + '</h1></div><div class="authorName"><p>Author Name : ' + post.emp_name +
+            '</p></div><div class="date"><p>' + post.published_at +
+            '</p></div><div class="images"><img src="assets/images/roninaks-logo-black-1-192x192.png"></div><div class="longDescription"><p>Blog Content</p><p1> </p1>' +
+            post.content + ' </div>';
 
-		return Template;
-	}
+        return Template;
+    }
 </script>
 
 </html>

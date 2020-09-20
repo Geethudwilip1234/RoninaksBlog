@@ -10,9 +10,9 @@
     if($res){
         $status = true;
 
-        while ($post = mysqli_fetch_assoc($res)) {   
+        $post = mysqli_fetch_assoc($res);
 
-            $data = array(
+        $data = array(
                 "id"=>$post["id"],
                 "AID" => $post["authorid"],
                 "emp_name" => $post["emp_name"],
@@ -20,10 +20,9 @@
                 "published_at" => $post["published_at"],
                 "content" => $post["content"],
                 "categories" =>$post["categories"]
-            );
-        }
+                );
+
     }
 
-    echo $_POST['PID'];
     echo json_encode(array("status"=>$status,"data"=>$data));
- ?>
+?>
